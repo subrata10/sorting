@@ -1,8 +1,8 @@
-package com.home.insertionsort;
+package com.sort.selectionsort;
 
 import java.util.Scanner;
 
-public class InsertionSort {
+public class SelectionSort {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -26,30 +26,33 @@ public class InsertionSort {
 
         System.out.println("\n");
 
-        numbers = doInsertionSort(numbers);
+        numbers = doSelectionSort(numbers);
 
         System.out.println("Sorted number: ");
         for (int number: numbers) {
-            System.out.print(number + " ");
+            System.out.print(number+" ");
         }
+
     }
 
+    private static int[] doSelectionSort(int[] numbers) {
+        int minIndex, temp;
 
-    private static int[] doInsertionSort(int[] numbers) {
-        int size = numbers.length;
+        for(int i=0; i<numbers.length; i++) {
+            minIndex = i;
 
-        for (int i=1; i<size; i++) {
-            int newNumber = numbers[i];
-            int j = i - 1;
-
-            while (j >= 0 && numbers[j] > newNumber) {
-                numbers[j+1] = numbers[j];
-                j = j - 1;
+            for(int j=i+1; j<numbers.length; j++) {
+                if (numbers[j] < numbers[minIndex]) {
+                    minIndex = j;
+                }
             }
 
-            numbers[j+1] = newNumber;
+            temp = numbers[i];
+            numbers[i] = numbers[minIndex];
+            numbers[minIndex] = temp;
         }
 
         return numbers;
     }
+
 }
