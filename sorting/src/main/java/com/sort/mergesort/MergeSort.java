@@ -5,7 +5,6 @@ package com.sort.mergesort;
  */
 public class MergeSort {
 
-
     public static void main(String[] args) {
         int[] arr = new int[]{10, 9, 7, 5, 4, 2, 1};
         MergeSort mergeSort = new MergeSort();
@@ -84,20 +83,18 @@ public class MergeSort {
             actualIndex = actualIndex + 1;
         }
 
-        // After partition if the size of left and right array is not equal.
-        if (i == l_size) {
-            while (j < r_size && actualIndex <= end) {
-                arr[actualIndex] = rightArray[j];
-                j = j + 1;
-                actualIndex = actualIndex + 1;
-            }
-        } else if (j == r_size) {
-            while (i < l_size && actualIndex <= end) {
-                arr[actualIndex] = leftArray[i];
-                i = i + 1;
-                actualIndex = actualIndex + 1;
-            }
+        while (j < r_size) {
+            arr[actualIndex] = rightArray[j];
+            j = j + 1;
+            actualIndex = actualIndex + 1;
         }
+
+        while (i < l_size) {
+            arr[actualIndex] = leftArray[i];
+            i = i + 1;
+            actualIndex = actualIndex + 1;
+        }
+
         return arr;
     }
 }
